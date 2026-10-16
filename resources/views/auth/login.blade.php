@@ -7,11 +7,11 @@
         <x-validation-errors class="mb-4" />
 
         @if (config('app.demo'))
-            <div class="mb-4 p-3 rounded-md bg-gray-100 text-sm text-gray-700">
-                <p class="font-semibold">Demo: usa una de estas cuentas (contraseña <code>demo1234</code>)</p>
-                <p>Administrador: <code>admin@hotel.test</code></p>
+            <div class="mb-6 p-4 rounded-tapa border border-dashed border-oro bg-hueso text-sm text-tinta">
+                <p class="font-bold text-brand">Demo: usa una de estas cuentas (contraseña <code>demo1234</code>)</p>
+                <p class="mt-1">Administrador: <code>admin@hotel.test</code></p>
                 <p>Cliente: <code>cliente@hotel.test</code></p>
-                <p class="mt-1 text-xs text-gray-500">Los datos se reinician periódicamente.</p>
+                <p class="mt-1 text-xs text-gris">Los datos se reinician periódicamente.</p>
             </div>
         @endif
 
