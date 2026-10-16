@@ -1,3 +1,28 @@
+# Gestión Hotelera (TFG DAW)
+
+Aplicación web en Laravel 12 (Jetstream + Livewire) para la gestión de reservas de un hotel: autenticación de usuarios, panel de administración, habitaciones, galería, reservas y mensajes de contacto.
+
+## Demo en Vercel
+
+**https://tfg-daw-precap-precap-s-projects.vercel.app**
+
+Cuentas de prueba (contraseña `demo1234`):
+
+| Rol | Email |
+| --- | --- |
+| Administrador | `admin@hotel.test` |
+| Cliente | `cliente@hotel.test` |
+
+Cómo funciona el despliegue:
+
+- `api/index.php` es el punto de entrada (runtime `vercel-php@0.7.4`, PHP 8.3). Los archivos de `public/` se sirven como estáticos.
+- La base de datos es **SQLite en `/tmp`**: se crea, se migra y se rellena con `DatabaseSeeder` en cada arranque en frío. Los cambios hechos en la demo se pierden al reiniciarse la función. Para datos persistentes, usa una base de datos externa (`DB_CONNECTION`, `DB_URL`, etc.).
+- Las imágenes que se suban desde el panel no se guardan: el sistema de archivos de Vercel es de solo lectura.
+- Los assets de Vite están precompilados en `public/build`. Si cambias `resources/css` o `resources/js`, ejecuta `npm run build` y sube `public/build`.
+- La configuración de Laravel (`APP_KEY`, sesiones por cookie, cachés en `/tmp`, `DEMO_MODE`…) está en las variables de entorno del proyecto en Vercel.
+
+---
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">

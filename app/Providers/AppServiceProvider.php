@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +20,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // En producción (Vercel) la app va detrás de un proxy HTTPS: forzamos https en las URLs generadas.
+        if ($this->app->environment('production')) {
+            URL::forceScheme('https');
+        }
     }
 }

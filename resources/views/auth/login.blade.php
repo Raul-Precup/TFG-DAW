@@ -6,6 +6,15 @@
 
         <x-validation-errors class="mb-4" />
 
+        @if (config('app.demo'))
+            <div class="mb-4 p-3 rounded-md bg-gray-100 text-sm text-gray-700">
+                <p class="font-semibold">Demo: usa una de estas cuentas (contraseña <code>demo1234</code>)</p>
+                <p>Administrador: <code>admin@hotel.test</code></p>
+                <p>Cliente: <code>cliente@hotel.test</code></p>
+                <p class="mt-1 text-xs text-gray-500">Los datos se reinician periódicamente.</p>
+            </div>
+        @endif
+
         @session('status')
             <div class="mb-4 font-medium text-sm text-green-600">
                 {{ $value }}
