@@ -13,8 +13,23 @@ export default {
 
     theme: {
         extend: {
+            // Paleta de Precap's Book (dirección de arte "Marcapáginas")
+            colors: {
+                brand: { DEFAULT: '#1F3A33', press: '#172C26', soft: '#DDE7E1', ondark: '#B9D3C6' },
+                cta: { DEFAULT: '#A8412F', hover: '#8E3526' },
+                oro: '#B8913A',
+                tinta: '#16201D',
+                papel: { DEFAULT: '#F5F0E6', hondo: '#ECE4D4' },
+                hueso: '#FFFDF8',
+                linea: '#DDD3C1',
+                gris: '#5E6661',
+            },
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                sans: ['Manrope', ...defaultTheme.fontFamily.sans],
+                display: ['"Libre Caslon Display"', 'Georgia', 'serif'],
+            },
+            borderRadius: {
+                tapa: '5px 18px 18px 5px',
             },
         },
     },

@@ -1,103 +1,44 @@
-<!DOCTYPE html>
-<html>
-  <head> 
-    @include('admin.css')
+@extends('precaps.admin')
 
-    <style>
-        .table_deg{
-        border: 2px solid white;
-        margin: auto;
-        width: 100%;
-        text-align: center;
-        margin-top:40px;
-        }
+@php($estados = ['waiting' => 'Pendiente', 'approve' => 'Aprobada', 'rejected' => 'Rechazada'])
 
-        .th_deg{
-            background-color: skyblue;
-            padding:8px;
-        }
+@section('titulo', 'Reservas')
+@section('ceja', 'Recepción')
 
-        tr{
-            border: 3px solid white;
-        }
-
-        td{
-            padding: 10px;
-        }
-    </style>
-
-  </head>
-  <body>
-    <!-- Header -->
-    @include('admin.header')
-    <!-- Header end-->
-
-    <!-- Sidebar Navigation-->
-    @include('admin.sidebar')
-    <!-- Sidebar Navigation end-->
-
-    <div class="page-content">
-        <div class="page-header">
-          <div class="container-fluid">
-
-          <table class="table_deg">
-                <tr>
-                    <th class="th_deg">Room_id</th>
-                    <th class="th_deg">Customer name</th>
-                    <th class="th_deg">Email</th>
-                    <th class="th_deg">Phone</th>
-                    <th class="th_deg">Arrival Date</th>
-                    <th class="th_deg">Leaving Date</th>
-                    <th class="th_deg">Status</th>
-                    <th class="th_deg">Room Title</th>
-                    <th class="th_deg">Price</th>
-                    <th class="th_deg">Image</th>
-                    <th class="th_deg">Delete</th>
-                    <th class="th_deg">Status Update</th>
-                </tr>
-
-                @foreach($data as $data)
-                <tr>
-                    <td>{{$data->room_id}}</td>
-                    <td>{{$data->name}}</td>
-                    <td>{{$data->email}}</td>
-                    <td>{{$data->phone}}</td>
-                    <td>{{$data->start_date}}</td>
-                    <td>{{$data->end_date}}</td>
-                    <td>
-
-                    @if($data->status == 'approve')
-                    <span style="color: green;">Approved</span>
-                    @endif
-                    
-                    @if($data->status == 'rejected')
-                    <span style="color: red;">Rejected</span>
-                    @endif
-
-                    @if($data->status == 'waiting')
-                    <span style="color: yellow;">Waiting</span>
-                    @endif
-
-                    </td>
-                    <td>{{$data->room->room_title}}</td>
-                    <td>{{$data->room->price}}</td>
-                    <td><img style="width:200px" src="/room/{{$data->room->image}}"></td>
-                    <td><a onclick="return confirm('Are you sure you want to delete this')" class="btn btn-danger" href="{{url('delete_booking',$data->id)}}">Delete</a></td>
-                    <td>
-                        <span style="padding-bottom: 10px">
-                            <a class="btn btn-success" href="{{url('approve_book',$data->id)}}">Approve</a>
-                        </span>
-                        <a class="btn btn-warning" href="{{url('reject_book',$data->id)}}">Rejected</a>
-                    </td>
-                </tr>
-                @endforeach
-            </table>
+@section('contenido')
+  <!-- ===== INICIO Lista de reservas ===== -->
+  <section class="caja">
+    <div class="caja__cabeza">
+      <h2>{{ $data->count() }} reservas</h2>
+      <p class="caja__nota">Aprueba o rechaza cada petición. El cliente lo ve en «Mis reservas».</p>
+    </div>
+    @forelse ($data as $item)
+      @php($estado = $item->status ?: 'waiting')
+      <article class="reserva-panel" data-reveal>
+        <div class="reserva-panel__hab">
+          @if ($item->room && $item->room->image)
+            <img src="{{ asset('room/'.$item->room->image) }}" alt="" loading="lazy">
+          @endif
+          <div>
+            <strong>{{ $item->room->room_title ?? 'Habitación retirada' }}</strong>
+            <span>{{ $item->start_date }} → {{ $item->end_date }}@if ($item->room && $item->room->price) · {{ $item->room->price }} €/noche @endif</span>
           </div>
         </div>
-    </div>
-     
-    <!-- Footer -->
-    @include('admin.footer')
-    <!-- Footer end -->
-  </body>
-</html>
+        <div class="reserva-panel__cliente">
+          <strong>{{ $item->name }}</strong>
+          <span>{{ $item->email }}</span>
+          <span>{{ $item->phone }}</span>
+        </div>
+        <span class="estado estado--{{ $estado }}">{{ $estados[$estado] ?? $estado }}</span>
+        <div class="reserva-panel__acciones">
+          <a class="btn btn--oscuro btn--sm" href="{{ url('approve_book', $item->id) }}">Aprobar</a>
+          <a class="btn btn--ghost btn--sm" href="{{ url('reject_book', $item->id) }}">Rechazar</a>
+          <a class="btn btn--peligro btn--sm" href="{{ url('delete_booking', $item->id) }}" onclick="return confirm('¿Seguro que quieres eliminar esta reserva?');">Eliminar</a>
+        </div>
+      </article>
+    @empty
+      <p class="caja__vacio">Todavía no hay reservas.</p>
+    @endforelse
+  </section>
+  <!-- ===== FIN Lista de reservas ===== -->
+@endsection

@@ -1,29 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-   <head>
-    @include('home.css')
+@extends('precaps.layout')
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script> 
-  </head>
-   <!-- body -->
-   <body class="main-layout">
-      <!-- loader  -->
-      <div class="loader_bg">
-         <div class="loader"><img src="images/loading.gif" alt="#"/></div>
+@section('titulo', "Habitaciones · Precap's Book")
+@section('descripcion', 'Todas las habitaciones de Precap’s Book con su precio por noche. Elige la tuya y reserva en línea.')
+
+@section('contenido')
+  @include('precaps.partials.cabecera', [
+    'num' => 'I',
+    'etiqueta' => 'Habitaciones',
+    'titulo' => 'Elige dónde quieres quedarte.',
+    'intro' => 'Cada habitación tiene su ficha con fotos, descripción y precio por noche. Abre la que te guste, marca tus fechas y reserva.',
+  ])
+
+  <!-- ===== INICIO Lista de habitaciones ===== -->
+  <section class="seccion" style="padding-top:0">
+    <div class="wrap">
+      <div class="rejilla">
+        @forelse ($room as $r)
+          @include('precaps.partials.tarjeta-habitacion', ['r' => $r])
+        @empty
+          <p class="intro">Todavía no hay habitaciones publicadas.</p>
+        @endforelse
       </div>
-      <!-- end loader -->
-      <!-- header -->
-      @include('home.header')
-      <!-- end header inner -->
-      <!-- end header -->
-
-      <!-- our_room -->
-        @include('home.room')
-      <!-- end our_room -->
-
-      <!--  footer -->
-        @include('home.footer')
-      <!-- end footer -->
-   </body>
-</html>
+    </div>
+  </section>
+  <!-- ===== FIN Lista de habitaciones ===== -->
+@endsection

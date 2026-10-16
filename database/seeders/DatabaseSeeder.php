@@ -36,12 +36,12 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $rooms = [
-            ['Habitación Individual', 'regular', '65', '1747746622.jpg', 'Habitación tranquila y luminosa, ideal para viajes de trabajo o escapadas cortas.'],
-            ['Habitación Doble Estándar', 'regular', '85', '1747746596.jpg', 'Dos camas, baño completo y escritorio. Todo lo necesario para una estancia cómoda.'],
-            ['Habitación Doble Superior', 'premium', '110', '1747746609.jpg', 'Más espacio, zona de estar y acabados de mayor calidad.'],
-            ['Suite Junior', 'premium', '150', '1748952600.jpg', 'Suite con salón integrado, cafetera y amenities premium.'],
-            ['Suite Deluxe', 'deluxe', '220', '1747746524.jpg', 'Amplia suite luminosa, con bañera y servicio de habitaciones.'],
-            ['Suite Presidencial', 'deluxe', '320', '1747746528.jpg', 'La mejor suite del hotel: salón independiente, vistas y atención personalizada.'],
+            ['Habitación Individual', 'regular', '65', 'precaps-individual.webp', 'Una habitación tranquila y luminosa, con cama amplia, escritorio y baño completo. Ideal para viajes de trabajo o escapadas cortas.'],
+            ['Habitación Doble Estándar', 'regular', '85', 'precaps-doble-estandar.webp', 'Dos camas, luz cálida y todo lo necesario para descansar bien. Perfecta para amigos o familia.'],
+            ['Habitación Doble Superior', 'premium', '110', 'precaps-doble-superior.webp', 'Más espacio, zona de estar junto a la ventana y acabados de mayor calidad.'],
+            ['Suite Junior', 'premium', '150', 'precaps-suite-junior.webp', 'Suite con salón integrado y balcón abierto al jardín. Cafetera, albornoces y amenities premium.'],
+            ['Suite Deluxe', 'deluxe', '220', 'precaps-suite-deluxe.webp', 'Cama con dosel, tonos verdes y mucha luz natural. Pensada para celebrar algo especial.'],
+            ['Suite Presidencial', 'deluxe', '320', 'precaps-suite-presidencial.webp', 'La mejor suite del hotel: salón independiente, zona de comedor y atención personalizada.'],
         ];
 
         foreach ($rooms as [$title, $type, $price, $image, $description]) {
@@ -57,8 +57,9 @@ class DatabaseSeeder extends Seeder
 
         // Solo fotos del hotel: la carpeta tiene además imágenes de prueba que no deben salir en la demo.
         $gallery = [
-            '1747746508.jpg', '1747746512.jpg', '1747746515.jpg', '1747746520.jpg', '1747746524.jpg',
-            '1747746528.jpg', '1747746539.jpg', '1747746542.jpg', '1748952640.jpg',
+            'precaps-vestibulo.webp', 'precaps-dormitorio-dorado.webp', 'precaps-piscina-atardecer.webp',
+            'precaps-desayuno-cama.webp', 'precaps-spa.webp', 'precaps-terraza.webp',
+            'precaps-recepcion.webp', 'precaps-cafe.webp', 'precaps-banera.webp', 'precaps-piscina-palmeras.webp',
         ];
 
         foreach ($gallery as $image) {

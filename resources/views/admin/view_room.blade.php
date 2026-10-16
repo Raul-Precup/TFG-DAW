@@ -1,84 +1,39 @@
-<!DOCTYPE html>
-<html>
-  <head> 
-    @include('admin.css')
-    <style>
+@extends('precaps.admin')
 
-    .table_deg{
-        border: 2px solid white;
-        margin: auto;
-        width: 80%;
-        text-align: center;
-        margin-top:40px;
-    }
+@php($tipos = ['regular' => 'Clásica', 'premium' => 'Premium', 'deluxe' => 'Deluxe'])
 
-    .th_deg{
-        background-color: skyblue;
-        padding:15px;
-    }
+@section('titulo', 'Habitaciones')
+@section('ceja', 'Catálogo')
 
-    tr{
-        border: 3px solid white;
-    }
+@section('contenido')
+  <div class="caja__cabeza" style="margin-bottom:20px">
+    <p class="caja__nota">{{ $data->count() }} habitaciones publicadas</p>
+    <a class="btn btn--cta btn--sm" href="{{ url('create_room') }}">Añadir habitación</a>
+  </div>
 
-    td{
-        padding: 10px;
-    }
-
-    </style>
-  </head>
-  <body>
-    <!-- Header -->
-    @include('admin.header')
-    <!-- Header end-->
-
-    <!-- Sidebar Navigation-->
-    @include('admin.sidebar')
-    <!-- Sidebar Navigation end-->
-
-    <div class="page-content">
-        <div class="page-header">
-          <div class="container-fluid">
-        
-            <table class="table_deg">
-                <tr>
-                    <th class="th_deg">Room Title</th>
-                    <th class="th_deg">Description</th>
-                    <th class="th_deg">Price</th>
-                    <th class="th_deg">Wifi</th>
-                    <th class="th_deg">Room Type</th>
-                    <th class="th_deg">Image</th>
-                    <th class="th_deg">Delete</th>
-                    <th class="th_deg">Update</th>
-                </tr>
-
-                @foreach($data as $data)
-                <tr>
-                    <td>{{$data->room_title}}</td>
-                    <td>{!! Str::limit($data->description,150) !!}</td>
-                    <td>{{$data->price}}$</td>
-                    <td>{{$data->wifi}}</td>
-                    <td>{{$data->room_type}}</td>
-                    <td>
-                        <img width="100" src="room/{{$data->image}}">
-                    </td>
-                    <td>
-                        <a onclick="return confirm('Are you sure about deleting this');" class="btn btn-danger" href="{{url('room_delete',$data->id)}}">Delete</a>
-                    </td>
-
-                    <td>
-                        <a class="btn btn-warning" href="{{url('room_update',$data->id)}}">Update</a>
-                    </td>
-                </tr>
-                @endforeach
-            </table>
-
+  <!-- ===== INICIO Lista de habitaciones ===== -->
+  <div class="rejilla-panel">
+    @forelse ($data as $item)
+      <article class="hab" data-reveal>
+        <div class="hab__foto">
+          @if ($item->image)
+            <img src="{{ asset('room/'.$item->image) }}" alt="{{ $item->room_title }}" loading="lazy">
+          @endif
+          @if ($item->price)<span class="tarjeta__precio">{{ $item->price }} €<small>/ noche</small></span>@endif
+        </div>
+        <div class="hab__cuerpo">
+          <h2>{{ $item->room_title }}</h2>
+          <p class="hab__meta">{{ $tipos[$item->room_type] ?? $item->room_type }} · {{ $item->wifi === 'yes' ? 'Wi-Fi' : 'Sin Wi-Fi' }}</p>
+          <p class="hab__desc">{{ Str::limit(strip_tags((string) $item->description), 120) }}</p>
+          <div class="hab__acciones">
+            <a class="btn btn--oscuro btn--sm" href="{{ url('room_update', $item->id) }}">Editar</a>
+            <a class="btn btn--peligro btn--sm" href="{{ url('room_delete', $item->id) }}" onclick="return confirm('¿Seguro que quieres eliminar esta habitación?');">Eliminar</a>
           </div>
         </div>
-    </div>
-
-    <!-- Footer -->
-    @include('admin.footer')
-    <!-- Footer end -->
-  </body>
-</html>
+      </article>
+    @empty
+      <p class="caja__vacio">Todavía no hay habitaciones. Añade la primera.</p>
+    @endforelse
+  </div>
+  <!-- ===== FIN Lista de habitaciones ===== -->
+@endsection

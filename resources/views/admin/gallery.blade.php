@@ -1,49 +1,33 @@
-<!DOCTYPE html>
-<html>
-  <head> 
-    @include('admin.css')
-  </head>
-  <body>
-    <!-- Header -->
-    @include('admin.header')
-    <!-- Header end-->
+@extends('precaps.admin')
 
-    <!-- Sidebar Navigation-->
-    @include('admin.sidebar')
-    <!-- Sidebar Navigation end-->
-     
-    <div class="page-content">
-        <div class="page-header">
-          <div class="container-fluid">
-            <center>
-            <h1 style="font-size: 40px; font-weight: bolder; color:white;">
-                Gallery
-            </h1>
+@section('titulo', 'Galería')
+@section('ceja', 'Fotos del hotel')
 
-            <div class="row">
-            @foreach($gallery as $gallery)
-            <div class="col-md-4">
-            <img style="height: 200px!important; width: 300px!important" src="/gallery/{{$gallery->image}}">
-            <a class="btn btn-danger" href="{{url('delete_gallery',$gallery->id)}}">Delete Image</a>
-            </div>
-            @endforeach
-            </div>
-
-            <form action="{{url('upload_gallery')}}" method="Post" enctype="multipart/form-data">
-                @csrf
-                <div style="padding: 30px;">
-                    <label style="color: white; font-weight:bold;">Upload Image</label>
-                    <input type="file" name="image" required>
-                    <input class="btn btn-primary" type="submit" value="Add Image">
-                </div>
-            </form>
-            </center>
-          </div>
-        </div>
+@section('contenido')
+  <!-- ===== INICIO Subir foto ===== -->
+  <form class="formulario formulario--panel subida" action="{{ url('upload_gallery') }}" method="POST" enctype="multipart/form-data" data-reveal>
+    @csrf
+    <div class="campo">
+      <label for="g-imagen">Añadir una foto a la galería</label>
+      <input id="g-imagen" type="file" name="image" accept="image/*" required>
     </div>
+    <button class="btn btn--cta" type="submit">Subir foto</button>
+    <p class="formulario__nota">En la demo publicada, las fotos que subas no se guardan de forma permanente.</p>
+  </form>
+  <!-- ===== FIN Subir foto ===== -->
 
-    <!-- Footer -->
-    @include('admin.footer')
-    <!-- Footer end -->
-  </body>
-</html>
+  <!-- ===== INICIO Fotos ===== -->
+  <div class="galeria-panel">
+    @forelse ($gallery as $item)
+      <figure class="galeria-panel__foto" data-reveal>
+        <img src="{{ asset('gallery/'.$item->image) }}" alt="Foto {{ $loop->iteration }} de la galería" loading="lazy">
+        <figcaption>
+          <a class="btn btn--peligro btn--sm" href="{{ url('delete_gallery', $item->id) }}" onclick="return confirm('¿Seguro que quieres quitar esta foto?');">Quitar</a>
+        </figcaption>
+      </figure>
+    @empty
+      <p class="caja__vacio">La galería está vacía.</p>
+    @endforelse
+  </div>
+  <!-- ===== FIN Fotos ===== -->
+@endsection

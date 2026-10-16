@@ -1,153 +1,89 @@
-<!DOCTYPE html>
-<html lang="en">
-   <head>
-    <base href="/public">
-    @include('home.css')
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <style>
+@extends('precaps.layout')
 
-        label{
-            display: inline-block;
-            width: 200px;
-        }
+@php($tipos = ['regular' => 'Clásica', 'premium' => 'Premium', 'deluxe' => 'Deluxe'])
 
-        input{
-            width: 100%;
-        }
+@section('titulo', ($room->room_title ?? 'Habitación')." · Precap's Book")
+@section('barra-href', '#reservar-habitacion')
 
-    </style>
+@section('contenido')
+@if (!$room)
+  @include('precaps.partials.cabecera', [
+    'num' => 'I',
+    'etiqueta' => 'Habitaciones',
+    'titulo' => 'Esta habitación ya no está disponible.',
+    'intro' => 'Puede que se haya retirado. Elige otra entre todas las habitaciones del hotel.',
+  ])
+  <div class="wrap"><a class="btn btn--ghost" href="{{ url('our_rooms') }}">Ver habitaciones</a></div>
+@else
+  <!-- ===== INICIO Ficha de habitación ===== -->
+  <section class="cabecera" style="padding-bottom:28px">
+    <div class="wrap">
+      <a class="enlace" href="{{ url('our_rooms') }}" style="margin-bottom:10px">
+        <svg class="btn__flecha" viewBox="0 0 24 24" aria-hidden="true" style="rotate:180deg"><path d="M5 12h13m-5-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Todas las habitaciones
+      </a>
+      <p class="capitulo" data-capitulo><span class="capitulo__num">I</span><span class="capitulo__linea"></span><span>{{ $tipos[$room->room_type] ?? 'Habitación' }}</span></p>
+      <h1 class="cabecera__titulo" data-split>{{ $room->room_title }}</h1>
+    </div>
+  </section>
 
-
-
-   </head>
-   <!-- body -->
-   <body class="main-layout">
-      <!-- loader  -->
-      <div class="loader_bg">
-         <div class="loader"><img src="images/loading.gif" alt="#"/></div>
+  <div class="wrap ficha">
+    <div>
+      <div class="ficha__foto" data-libro>
+        @if ($room->image)
+          <img src="{{ asset('room/'.$room->image) }}" width="1000" height="750" alt="{{ $room->room_title }}" fetchpriority="high">
+        @endif
+        @if ($room->price)
+          <span class="tarjeta__precio" data-cinta>{{ $room->price }} €<small>/ noche</small></span>
+        @endif
       </div>
-      <!-- end loader -->
-      <!-- header -->
-      @include('home.header')
-      <!-- end header inner -->
-      <!-- end header -->
-      
-        <div  class="our_room">
-            <div class="container">
-                <div class="row">
-                <div class="col-md-12">
-                    <div class="titlepage">
-                        <h2>Our Room</h2>
-                        <p>Lorem Ipsum available, but the majority have suffered </p>
-                    </div>
-                </div>
-                </div>
+      <ul class="ficha__datos" data-reveal>
+        <li>{{ $tipos[$room->room_type] ?? ucfirst((string) $room->room_type) }}</li>
+        <li>{{ $room->wifi === 'yes' ? 'Wi-Fi incluido' : 'Sin Wi-Fi' }}</li>
+        @if ($room->price)<li>{{ $room->price }} € por noche</li>@endif
+      </ul>
+      @if ($room->description)
+        <p class="ficha__desc" data-reveal>{{ $room->description }}</p>
+      @endif
+    </div>
 
-                <div class="row">
-                <div class="col-md-8">
-                    <div id="serv_hover"  class="room">
-                        <div style="padding: 20px;" class="room_img">
-                            <figure><img style="height:300px; width:800px" src="/room/{{$room->image}}" alt="#"/></figure>
-                        </div>
-                        <div class="bed_room">
-                            <h2>{{$room->room_title}}</h2>
-                            <p style="padding: 12px;">{{$room->description}}</p>
-                            <h4 style="padding: 12px;"Free Wifi : {{$room->wifi}}</h4>
-                            <h4 style="padding: 12px;">Room Type : {{$room->room_type}}</h4>
-                            <h3 style="padding: 12px;">Price : {{$room->price}}$</h3>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <h1 style="font-size: 40px!important;">Book Room</h1>
-
-                    <div>
-                    @if(session()->has('message'))
-                    <div class="alert alert-success">
-                        <button type="button" class="close" data-bs-dismiss="alert">X</button>
-                    {{session()->get('message')}}
-                    </div>
-                    @endif
-                    </div>
-
-                    @if($errors)
-                    @foreach($errors->all() as $errors)
-                    <li style="color:red">
-                        {{$errors}}
-                    </li>
-                    @endforeach
-                    @endif
-
-                    <form action="{{url('add_booking', $room->id)}}" method="Post"> 
-                    @csrf
-                    <div>
-                        <label>Name</label>
-                        <input type="text" name="name" 
-                        @if(Auth::id())
-                        value="{{Auth::user()->name}}"
-                        @endif>
-                    </div>
-                    <div>
-                        <label>Email</label>
-                        <input type="email" name="email"
-                        @if(Auth::id())
-                        value="{{Auth::user()->email}}"
-                        @endif>
-                    </div>
-                    <div>
-                        <label>Phone</label>
-                        <input type="number" name="phone"
-                        @if(Auth::id())
-                        value="{{Auth::user()->phone}}"
-                        @endif>
-                    </div>
-                    <div>
-                        <label>Start Date</label>
-                        <input type="date" name="startDate" id="startDate">
-                    </div>
-                    <div>
-                        <label>End Date</label>
-                        <input type="date" name="endDate" id="endDate">
-                    </div>
-                    <div style="padding-top: 20px;">
-                        <input type="submit" style="background-color: skyblue;" class="btn btn-primary" value="Book Room">
-                    </div>
-                    </form>
-                </div>
-
-                </div>
-            </div>
+    <aside class="ficha__reserva" id="reservar-habitacion">
+      <form class="formulario" action="{{ url('add_booking', $room->id) }}" method="POST" data-reveal data-barra-ocultar>
+        @csrf
+        <h2>Reserva esta habitación</h2>
+        <p class="formulario__nota" style="margin-top:-6px">Marca tus fechas. El hotel revisa la reserva y la verás en «Mis reservas».</p>
+        @include('precaps.partials.aviso')
+        <div class="campo">
+          <label for="r-nombre">Nombre</label>
+          <input id="r-nombre" type="text" name="name" autocomplete="name" value="{{ old('name', Auth::user()->name ?? '') }}" required>
         </div>
-      
-      <!--  footer -->
-        @include('home.footer')
-      <!-- end footer -->
-
-<script type="text/javascript">
-
-    $(function(){
-        var dtToday = new Date();
-    
-        var month = dtToday.getMonth() + 1;
-
-        var day = dtToday.getDate();
-
-        var year = dtToday.getFullYear();
-
-        if(month < 10)
-            month = '0' + month.toString();
-
-        if(day < 10)
-        day = '0' + day.toString();
-
-        var maxDate = year + '-' + month + '-' + day;
-        $('#startDate').attr('min', maxDate);
-        $('#endDate').attr('min', maxDate);
-
-    });
-
-</script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-   </body>
-</html>
+        <div class="campo">
+          <label for="r-email">Email</label>
+          <input id="r-email" type="email" name="email" autocomplete="email" value="{{ old('email', Auth::user()->email ?? '') }}" required>
+        </div>
+        <div class="campo">
+          <label for="r-telefono">Teléfono</label>
+          <input id="r-telefono" type="tel" name="phone" inputmode="tel" autocomplete="tel" value="{{ old('phone', Auth::user()->phone ?? '') }}" required>
+        </div>
+        <div class="formulario__fila">
+          <div class="campo">
+            <label for="r-llegada">Llegada</label>
+            <input id="r-llegada" type="date" name="startDate" value="{{ old('startDate', request('llegada')) }}" required data-fecha-llegada>
+          </div>
+          <div class="campo">
+            <label for="r-salida">Salida</label>
+            <input id="r-salida" type="date" name="endDate" value="{{ old('endDate', request('salida')) }}" required data-fecha-salida>
+          </div>
+        </div>
+        <button class="btn btn--cta" type="submit" style="width:100%">Reservar
+          <svg class="btn__flecha" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13m-5-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        @guest
+          <p class="formulario__nota">Para seguir tu reserva en «Mis reservas», <a href="{{ route('login') }}">entra</a> o <a href="{{ route('register') }}">crea una cuenta</a> con el mismo email.</p>
+        @endguest
+      </form>
+    </aside>
+  </div>
+  <!-- ===== FIN Ficha de habitación ===== -->
+@endif
+@endsection

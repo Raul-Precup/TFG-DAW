@@ -1,27 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-   <head>
-    @include('home.css')
+@extends('precaps.layout')
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script> 
-  </head>
-   <!-- body -->
-   <body class="main-layout">
-      <!-- loader  -->
-      <div class="loader_bg">
-         <div class="loader"><img src="images/loading.gif" alt="#"/></div>
-      </div>
-      <!-- end loader -->
-      <!-- header -->
-      @include('home.header')
-      <!-- end header inner -->
-      <!-- end header -->
-      <!-- gallery -->
-        @include('home.gallery')
-      <!-- end gallery -->
-      <!--  footer -->
-        @include('home.footer')
-      <!-- end footer -->
-   </body>
-</html>
+@section('titulo', "Galería · Precap's Book")
+@section('descripcion', 'Fotos de las habitaciones y los espacios de Precap’s Book.')
+
+@section('contenido')
+  @include('precaps.partials.cabecera', [
+    'num' => 'III',
+    'etiqueta' => 'Galería',
+    'titulo' => 'El hotel, página a página.',
+    'intro' => 'Habitaciones, rincones y momentos del hotel. Toca una foto para verla en grande.',
+  ])
+
+  <!-- ===== INICIO Galería completa ===== -->
+  <section class="seccion" style="padding-top:0">
+    <div class="wrap">
+      @if ($gallery->count())
+        @include('precaps.partials.galeria', ['fotos' => $gallery])
+      @else
+        <p class="intro">Todavía no hay fotos en la galería.</p>
+      @endif
+    </div>
+  </section>
+  <!-- ===== FIN Galería completa ===== -->
+@endsection

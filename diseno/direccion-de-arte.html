@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="es" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Precap's Book · Dirección de arte</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="../public/favicon-precaps.svg" type="image/svg+xml">
+  <link rel="preload" href="../public/fonts/precaps/libre-caslon-display-normal-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../public/fonts/precaps/manrope-normal-400-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../public/css/precaps.css?v=20261016a">
+  <script>document.documentElement.className=document.documentElement.className.replace('no-js','js');</script>
+  <style>
+    /* Solo para la hoja de muestra */
+    .muestra__controles{display:flex;flex-wrap:wrap;align-items:center;gap:.8rem;justify-content:center;margin:28px auto 0;padding:0 var(--gutter);text-align:center}
+    .muestra__repetir{border:1px solid var(--line);background:var(--surface);border-radius:999px;min-height:44px;padding:.5em 1.2em;font-weight:700;cursor:pointer;color:var(--brand)}
+    .muestra__aviso{font-size:.85rem;color:var(--muted);max-width:52ch}
+    .muestra__nota{display:block;margin-top:.6rem;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+    .bloque{padding-block:clamp(64px,9vw,120px)}
+    .bloque--hondo{background:var(--bg-deep)}
+    .bloque__intro{max-width:56ch;color:var(--muted);margin:.8rem 0 2rem}
+    .h2{font-size:var(--fs-h2)}
+    .paleta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .color{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-tapa);overflow:hidden}
+    .color__muestra{height:88px}
+    .color__muestra--borde{box-shadow:inset 0 0 0 1px var(--line)}
+    .color__txt{padding:12px 14px 14px;font-size:.88rem;line-height:1.45}
+    .color__txt strong{display:block;font-size:.95rem;color:var(--brand)}
+    .color__hex{font-size:.75rem;letter-spacing:.06em;color:var(--muted)}
+    .letras{display:grid;gap:28px}
+    .letras__display{font-family:var(--font-display);font-size:clamp(2.2rem,1.4rem + 3.4vw,4rem);line-height:1.04;color:var(--brand)}
+    .letras__nota{font-size:.85rem;color:var(--muted);margin-top:.4rem}
+    .elementos{display:grid;gap:18px}
+    .elemento{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-tapa);padding:20px;display:grid;gap:14px}
+    .elemento h3{font-size:1.45rem}
+    .elemento p{margin:0;color:var(--muted);font-size:.95rem}
+    .elemento__escena{position:relative;min-height:150px;border-radius:var(--r-tapa);overflow:hidden;background:var(--bg)}
+    .elemento__btn{justify-self:start;border:0;background:none;padding:0;font-weight:700;color:var(--cta);cursor:pointer;min-height:44px}
+    .demo-cinta{position:absolute;top:0;left:50%;width:30px;height:120px;margin-left:-15px}
+    .demo-libro{position:absolute;inset:0;border-radius:var(--r-tapa);overflow:hidden}
+    .demo-libro img{width:100%;height:100%;object-fit:cover}
+    .demo-capitulo{display:grid;place-items:center;min-height:150px}
+    .demo-sello{display:grid;place-items:center;min-height:150px;color:var(--brand)}
+    .demo-sello .sello{position:static;width:110px;color:var(--brand)}
+    .demo-tapa{position:absolute;inset:18px 30%;border-radius:var(--r-tapa);overflow:hidden;box-shadow:var(--shadow-sm)}
+    .demo-tapa img{width:100%;height:100%;object-fit:cover}
+    .demo-tapa::before{content:"";position:absolute;inset:0 auto 0 0;width:12px;z-index:1;background:linear-gradient(to right,rgba(0,0,0,.3),transparent)}
+    .acciones{display:grid;gap:28px}
+    .acciones__botones{display:flex;flex-wrap:wrap;gap:12px}
+    .acciones .tarjeta{max-width:380px}
+    .pie-muestra{padding:48px var(--gutter) 64px;text-align:center;font-size:.85rem;color:var(--muted)}
+    @media (min-width:860px){
+      .paleta{grid-template-columns:repeat(3,minmax(0,1fr))}
+      .letras{grid-template-columns:1.2fr 1fr;align-items:end}
+      .elementos{grid-template-columns:repeat(3,minmax(0,1fr))}
+      .acciones{grid-template-columns:1fr 1fr;align-items:center}
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== INICIO Navegación ===== -->
+<header class="nav" data-nav>
+  <div class="wrap nav__inner">
+    <a class="logo" href="#" aria-label="Precap's Book, inicio">
+      <svg class="logo__simbolo" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+        <path class="logo__pagina logo__pagina--izq" d="M23.2 13.2C18 9.6 10.6 9.1 4.5 11v27.4c6.1-1.8 13.5-1.3 18.7 2.3z"/>
+        <path class="logo__pagina logo__pagina--der" d="M24.8 13.2c5.2-3.6 12.6-4.1 18.7-2.2v27.4c-6.1-1.8-13.5-1.3-18.7 2.3z"/>
+        <path class="logo__cinta" d="M31 9.5h5v34l-2.5-2.9-2.5 2.9z"/>
+      </svg>
+      <span class="logo__nombre">Precap<span class="logo__apos">’</span>s Book</span>
+    </a>
+    <ul class="nav__links">
+      <li><a href="#" aria-current="page">Inicio</a></li>
+      <li><a href="#">Habitaciones</a></li>
+      <li><a href="#">Galería</a></li>
+      <li><a href="#">Contacto</a></li>
+      <li><a href="#">Mis reservas</a></li>
+    </ul>
+    <div class="nav__actions">
+      <a class="nav__entrar" href="#">Entrar</a>
+      <a class="btn btn--cta btn--sm" href="#reservar">Reservar</a>
+      <button class="nav__toggle" type="button" aria-label="Abrir menú"><span></span></button>
+    </div>
+  </div>
+</header>
+<!-- ===== FIN Navegación ===== -->
+
+<main>
+<!-- ===== INICIO Portada ===== -->
+<section class="portada" data-portada>
+  <div class="portada__libro" data-libro-portada data-cinta-contenedor="#reservar">
+    <img class="portada__img" src="../public/images/banner1.jpg" width="1600" height="795" alt="Habitación del hotel con cama de matrimonio y ventanales a la ciudad de noche" fetchpriority="high">
+    <span class="portada__tapa portada__tapa--izq" aria-hidden="true"></span>
+    <span class="portada__tapa portada__tapa--der" aria-hidden="true"></span>
+    <span class="portada__lomo" aria-hidden="true"></span>
+
+    <div class="sello" aria-hidden="true">
+      <svg viewBox="0 0 120 120" focusable="false">
+        <defs><path id="aro-portada" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0"/></defs>
+        <g class="sello__aro"><text font-size="9.2" fill="currentColor"><textPath href="#aro-portada" textLength="289" lengthAdjust="spacing">PRECAP’S BOOK · HOTEL &amp; RESERVAS · </textPath></text></g>
+        <circle cx="60" cy="60" r="33" fill="none" stroke="currentColor" stroke-width=".8" opacity=".55"/>
+        <g transform="translate(42 41) scale(.75)">
+          <path fill="currentColor" d="M23.2 13.2C18 9.6 10.6 9.1 4.5 11v27.4c6.1-1.8 13.5-1.3 18.7 2.3z"/>
+          <path fill="currentColor" d="M24.8 13.2c5.2-3.6 12.6-4.1 18.7-2.2v27.4c-6.1-1.8-13.5-1.3-18.7 2.3z"/>
+          <path fill="#C8573F" d="M31 9.5h5v34l-2.5-2.9-2.5 2.9z"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="cinta" aria-hidden="true"><span class="cinta__tela"></span></div>
+
+    <div class="portada__texto">
+      <p class="portada__ceja" data-hero-in>Hotel &amp; reservas en línea</p>
+      <h1 class="portada__titulo">
+        <span class="linea"><span class="linea-in">Tu próxima</span></span>
+        <span class="linea"><span class="linea-in"><span class="acento">historia</span></span></span>
+        <span class="linea"><span class="linea-in">empieza aquí.</span></span>
+      </h1>
+      <p class="portada__sub" data-hero-in>Elige fechas, reserva tu habitación en un minuto y sigue desde tu cuenta cuándo la confirma el hotel.</p>
+    </div>
+  </div>
+
+  <form class="reserva" id="reservar" data-reserva data-hero-in>
+    <div class="reserva__campo">
+      <label for="llegada">Llegada</label>
+      <input id="llegada" name="llegada" type="date">
+    </div>
+    <div class="reserva__campo">
+      <label for="salida">Salida</label>
+      <input id="salida" name="salida" type="date">
+    </div>
+    <div class="reserva__campo reserva__campo--hab">
+      <label for="habitacion">Habitación</label>
+      <select id="habitacion" name="habitacion">
+        <option value="#">Elige una habitación</option>
+        <option value="#">Habitación Individual</option>
+        <option value="#">Habitación Doble Estándar</option>
+        <option value="#">Habitación Doble Superior</option>
+        <option value="#">Suite Junior</option>
+        <option value="#">Suite Deluxe</option>
+        <option value="#">Suite Presidencial</option>
+      </select>
+    </div>
+    <button class="btn btn--cta" type="submit" data-cinta-hasta>
+      Reservar
+      <svg class="btn__flecha" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13m-5-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </form>
+</section>
+<!-- ===== FIN Portada ===== -->
+
+<p class="muestra__controles">
+  <button type="button" class="muestra__repetir" data-ver-de-nuevo>Ver de nuevo</button>
+  <span class="muestra__aviso" data-aviso-rm hidden>Tienes activado «Reducir movimiento»: aquí ves una versión sin desplazamientos. Apágalo para ver la animación completa.</span>
+  <span class="muestra__nota" style="flex-basis:100%">Hoja de muestra · no se publica</span>
+</p>
+
+<!-- ===== INICIO Colores ===== -->
+<section class="bloque">
+  <div class="wrap">
+    <p class="capitulo" data-capitulo><span class="capitulo__num">I</span><span class="capitulo__linea"></span><span>Tu marca</span></p>
+    <h2 class="h2" data-split>Tus colores</h2>
+    <p class="bloque__intro" data-reveal>Papel, verde de encuadernación y un toque de lacre. El rojo solo aparece donde se reserva, para que el ojo vaya siempre ahí.</p>
+    <div class="paleta">
+      <div class="color" data-reveal><div class="color__muestra" style="background:#1F3A33"></div><div class="color__txt"><strong>Verde de encuadernación</strong><span class="color__hex">#1F3A33</span><br>Títulos, menú y secciones oscuras.</div></div>
+      <div class="color" data-reveal><div class="color__muestra color__muestra--borde" style="background:#F5F0E6"></div><div class="color__txt"><strong>Papel</strong><span class="color__hex">#F5F0E6</span><br>El fondo de toda la web, con un grano muy suave.</div></div>
+      <div class="color" data-reveal><div class="color__muestra" style="background:#A8412F"></div><div class="color__txt"><strong>Lacre</strong><span class="color__hex">#A8412F</span><br>Solo para reservar: botones y marcapáginas.</div></div>
+      <div class="color" data-reveal><div class="color__muestra" style="background:#B8913A"></div><div class="color__txt"><strong>Oro de lomo</strong><span class="color__hex">#B8913A</span><br>Líneas finas y números de capítulo.</div></div>
+      <div class="color" data-reveal><div class="color__muestra" style="background:#16201D"></div><div class="color__txt"><strong>Tinta</strong><span class="color__hex">#16201D</span><br>Los textos.</div></div>
+      <div class="color" data-reveal><div class="color__muestra color__muestra--borde" style="background:#FFFDF8"></div><div class="color__txt"><strong>Blanco hueso</strong><span class="color__hex">#FFFDF8</span><br>Tarjetas y formularios.</div></div>
+    </div>
+  </div>
+</section>
+<!-- ===== FIN Colores ===== -->
+
+<!-- ===== INICIO Letras ===== -->
+<section class="bloque bloque--hondo">
+  <div class="wrap letras">
+    <div>
+      <p class="capitulo" data-capitulo><span class="capitulo__num">II</span><span class="capitulo__linea"></span><span>Habitaciones</span></p>
+      <p class="letras__display" data-split>Habitaciones para quedarse un día más.</p>
+      <p class="letras__nota" data-reveal>Títulos: una letra clásica de libro, elegante en grande.</p>
+    </div>
+    <div>
+      <p data-reveal>Cada habitación tiene su ficha con fotos, descripción y precio por noche. Eliges las fechas, reservas y el hotel la confirma desde su panel. Tú lo ves en «Mis reservas».</p>
+      <p class="letras__nota" data-reveal>Textos, menús y formularios: una letra clara, cómoda en el móvil.</p>
+    </div>
+  </div>
+</section>
+<!-- ===== FIN Letras ===== -->
+
+<!-- ===== INICIO Elementos ===== -->
+<section class="bloque">
+  <div class="wrap">
+    <p class="capitulo" data-capitulo><span class="capitulo__num">III</span><span class="capitulo__linea"></span><span>Lo que es solo tuyo</span></p>
+    <h2 class="h2" data-split>Los elementos de tu marca</h2>
+    <p class="bloque__intro" data-reveal>Todos salen de la idea de un libro: tu nombre, Book, y el gesto de marcar la página que quieres guardar.</p>
+    <div class="elementos">
+      <article class="elemento" data-reveal>
+        <div class="elemento__escena" data-escena="cinta"><div class="demo-cinta"><span class="cinta__tela"></span></div></div>
+        <h3>El marcapáginas</h3>
+        <p>Señala siempre la acción: cae hasta el botón de reservar y marca el precio de cada habitación.</p>
+        <button class="elemento__btn" type="button" data-demo="cinta">Ver cómo se mueve</button>
+      </article>
+      <article class="elemento" data-reveal>
+        <div class="elemento__escena"><div class="demo-libro" data-escena="libro"><img src="../public/images/banner3.jpg" width="1600" height="795" alt="Piscina del hotel al atardecer" loading="lazy"></div></div>
+        <h3>Las fotos se abren como un libro</h3>
+        <p>Cada foto aparece desde el centro, desde el lomo dorado, como cuando abres un libro.</p>
+        <button class="elemento__btn" type="button" data-demo="libro">Ver cómo se mueve</button>
+      </article>
+      <article class="elemento" data-reveal>
+        <div class="elemento__escena demo-capitulo" data-escena="capitulo"><p class="capitulo" style="margin:0"><span class="capitulo__num">V</span><span class="capitulo__linea"></span><span>Galería</span></p></div>
+        <h3>Capítulos</h3>
+        <p>Cada sección es un capítulo con su número. La línea dorada se dibuja al llegar.</p>
+        <button class="elemento__btn" type="button" data-demo="capitulo">Ver cómo se mueve</button>
+      </article>
+      <article class="elemento" data-reveal>
+        <div class="elemento__escena"><div class="demo-tapa"><img src="../public/room/1747746609.jpg" width="275" height="183" alt="Habitación doble con vistas al mar" loading="lazy"></div></div>
+        <h3>Fotos con canto de libro</h3>
+        <p>Esquina recta del lado del lomo, redondeada del otro, y una sombra suave en el borde.</p>
+      </article>
+      <article class="elemento" data-reveal>
+        <div class="elemento__escena demo-sello" data-escena="sello">
+          <div class="sello is-girando" aria-hidden="true">
+            <svg viewBox="0 0 120 120" focusable="false">
+              <defs><path id="aro-demo" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0"/></defs>
+              <g class="sello__aro"><text font-size="9.2" fill="currentColor"><textPath href="#aro-demo" textLength="289" lengthAdjust="spacing">PRECAP’S BOOK · HOTEL &amp; RESERVAS · </textPath></text></g>
+              <circle cx="60" cy="60" r="33" fill="none" stroke="currentColor" stroke-width=".8" opacity=".55"/>
+              <g transform="translate(42 41) scale(.75)">
+                <path fill="currentColor" d="M23.2 13.2C18 9.6 10.6 9.1 4.5 11v27.4c6.1-1.8 13.5-1.3 18.7 2.3z"/>
+                <path fill="currentColor" d="M24.8 13.2c5.2-3.6 12.6-4.1 18.7-2.2v27.4c-6.1-1.8-13.5-1.3-18.7 2.3z"/>
+                <path fill="#A8412F" d="M31 9.5h5v34l-2.5-2.9-2.5 2.9z"/>
+              </g>
+            </svg>
+          </div>
+        </div>
+        <h3>Sello ex libris</h3>
+        <p>Como el sello que se pone en los libros propios. Firma la portada y gira despacio.</p>
+        <button class="elemento__btn" type="button" data-demo="sello">Ver cómo se mueve</button>
+      </article>
+    </div>
+  </div>
+</section>
+<!-- ===== FIN Elementos ===== -->
+
+<!-- ===== INICIO Botón y tarjeta ===== -->
+<section class="bloque bloque--hondo">
+  <div class="wrap acciones">
+    <div>
+      <p class="capitulo" data-capitulo><span class="capitulo__num">IV</span><span class="capitulo__linea"></span><span>Botones y tarjetas</span></p>
+      <h2 class="h2" data-split>Un solo verbo: reservar</h2>
+      <p class="bloque__intro" data-reveal>El botón rojo siempre dice lo mismo y lleva al mismo sitio. Al pasar el ratón se oscurece y la flecha avanza; al tocarlo, se hunde un poco.</p>
+      <div class="acciones__botones" data-reveal>
+        <a class="btn btn--cta" href="#reservar">Reservar
+          <svg class="btn__flecha" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13m-5-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="btn btn--ghost" href="#">Ver habitaciones</a>
+      </div>
+    </div>
+    <div data-cinta-trigger>
+      <a class="tarjeta" href="#" data-reveal>
+        <div class="tarjeta__foto">
+          <img src="../public/room/1748952600.jpg" width="300" height="168" alt="Suite Junior con cama de matrimonio y vistas a la ciudad" loading="lazy">
+          <span class="tarjeta__precio" data-cinta>150 €<small>/ noche</small></span>
+        </div>
+        <div class="tarjeta__cuerpo">
+          <h3 class="tarjeta__titulo">Suite Junior</h3>
+          <p class="tarjeta__meta"><span>Premium</span><span>Wi-Fi</span></p>
+          <span class="tarjeta__mas">Ver habitación
+            <svg class="btn__flecha" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13m-5-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+<!-- ===== FIN Botón y tarjeta ===== -->
+</main>
+
+<p class="pie-muestra">Precap’s Book · Dirección de arte «Marcapáginas» · Hoja de muestra, no se publica</p>
+
+<script src="../public/vendor/precaps/gsap.min.js" defer></script>
+<script src="../public/vendor/precaps/ScrollTrigger.min.js" defer></script>
+<script src="../public/vendor/precaps/SplitText.min.js" defer></script>
+<script src="../public/vendor/precaps/lenis.min.js" defer></script>
+<script src="../public/js/precaps.js?v=20261016a" defer></script>
+<script>
+  // Controles de la hoja de muestra: "Ver de nuevo" y "Ver cómo se mueve"
+  document.addEventListener('DOMContentLoaded', () => {
+    const P = window.Precaps;
+    const $ = (s, c = document) => c.querySelector(s);
+    const repetir = $('[data-ver-de-nuevo]');
+    const aviso = $('[data-aviso-rm]');
+    if (!P || !P.hasGSAP) { if (repetir) repetir.hidden = true; document.querySelectorAll('[data-demo]').forEach((b) => (b.hidden = true)); return; }
+    const M = P.M;
+    if (P.RM) {
+      if (aviso) aviso.hidden = false;
+      repetir.addEventListener('click', () => {
+        gsap.fromTo('[data-portada] .portada__texto, [data-portada] .reserva, [data-portada] .cinta, [data-portada] .sello',
+          { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5, stagger: 0.12, ease: 'none' });
+      });
+      document.querySelectorAll('[data-demo]').forEach((b) => (b.hidden = true));
+      return;
+    }
+    repetir.addEventListener('click', () => { if (P.tl) P.tl.restart(); });
+
+    const demos = {
+      cinta: (e) => gsap.fromTo($('.demo-cinta', e), { clipPath: 'inset(0% 0% 100% 0%)', rotate: 6 }, { clipPath: 'inset(0% 0% 0% 0%)', rotate: 0, duration: 1.1, ease: M.ease }),
+      libro: (e) => gsap.timeline()
+        .fromTo(e, { clipPath: 'inset(0% 50% 0% 50%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: M.dur * 1.1, ease: M.easeIO })
+        .fromTo($('img', e), { scale: 1.14 }, { scale: 1, duration: M.dur * 1.5, ease: M.ease }, 0),
+      capitulo: (e) => gsap.timeline()
+        .fromTo($('.capitulo__num', e), { yPercent: 60, autoAlpha: 0 }, { yPercent: 0, autoAlpha: 1, duration: M.dur * 0.8, ease: M.ease })
+        .fromTo($('.capitulo__linea', e), { scaleX: 0 }, { scaleX: 1, duration: M.dur * 0.9, ease: M.easeIO }, 0.1),
+      sello: (e) => gsap.fromTo($('.sello', e), { scale: 1.35, rotate: -35, autoAlpha: 0 }, { scale: 1, rotate: 0, autoAlpha: 1, duration: 0.8, ease: M.pop }),
+    };
+    document.querySelectorAll('[data-demo]').forEach((b) => {
+      b.addEventListener('click', () => {
+        const tipo = b.dataset.demo;
+        const escena = document.querySelector(`[data-escena="${tipo}"]`) || b.closest('.elemento').querySelector('.elemento__escena');
+        if (demos[tipo] && escena) demos[tipo](escena);
+      });
+    });
+  });
+</script>
+</body>
+</html>

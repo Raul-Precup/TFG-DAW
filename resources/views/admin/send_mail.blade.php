@@ -1,72 +1,39 @@
-<!DOCTYPE html>
-<html>
-  <head> 
-    <base href="/public">
-    @include('admin.css')
+@extends('precaps.admin')
 
-    <style>
-        label{
-            display: inline-block;
-            width: 200px;
-        }
+@section('titulo', 'Responder por correo')
+@section('ceja', 'Mensajes')
 
-        .div_deg{
-            padding-top: 30px;
-        }
-
-        .div_center{
-            text-align: center;
-            padding-top: 40px;
-        }
-    </style>
-  </head>
-  <body>
-    <!-- Header -->
-    @include('admin.header')
-    <!-- Header end-->
-
-    <!-- Sidebar Navigation-->
-    @include('admin.sidebar')
-    <!-- Sidebar Navigation end-->
-     
-    <div class="page-content">
-        <div class="page-header">
-          <div class="container-fluid">
-            <center>
-                <h1 style="font-size: 30px; font-weight: bold;">Mail send to {{$data->name}}</h1>
-                 
-                <form action="{{url('mail', $data->id)}}" method="Post">
-                    @csrf
-                    <div class="div_deg">
-                        <label>Greeting</label>
-                        <input type="text" name="greeting">
-                    </div>
-                    <div class="div_deg">
-                        <label>Mail Body</label>
-                        <textarea name="body"></textarea>
-                    </div>
-                    <div class="div_deg">
-                        <label>Action Text</label>
-                        <input type="text" name="action_text">
-                    </div>
-                    <div class="div_deg">
-                        <label>Action Url</label>
-                        <input type="text" name="action_url">
-                    </div>
-                    <div class="div_deg">
-                        <label>End Line</label>
-                        <input type="text" name="endline">
-                    </div>
-                    <div class="div_deg">
-                        <input class="btn btn-primary" type="submit" value="Send Mail">
-                    </div>
-                </form>
-            </center>
-          </div>
-        </div>
+@section('contenido')
+  <!-- ===== INICIO Correo ===== -->
+  <form class="formulario formulario--panel" action="{{ url('mail', $data->id) }}" method="POST" data-reveal>
+    @csrf
+    <p class="caja__nota">Para: <strong>{{ $data->name }}</strong> · {{ $data->email }}</p>
+    <div class="campo">
+      <label for="m-saludo">Saludo</label>
+      <input id="m-saludo" type="text" name="greeting" placeholder="Hola, {{ $data->name }}:">
     </div>
-    <!-- Footer -->
-    @include('admin.footer')
-    <!-- Footer end -->
-  </body>
-</html>
+    <div class="campo">
+      <label for="m-cuerpo">Mensaje</label>
+      <textarea id="m-cuerpo" name="body" rows="6"></textarea>
+    </div>
+    <div class="formulario__fila">
+      <div class="campo">
+        <label for="m-boton">Texto del botón</label>
+        <input id="m-boton" type="text" name="action_text" placeholder="Ver habitaciones">
+      </div>
+      <div class="campo">
+        <label for="m-url">Enlace del botón</label>
+        <input id="m-url" type="url" name="action_url" placeholder="{{ url('our_rooms') }}">
+      </div>
+    </div>
+    <div class="campo">
+      <label for="m-despedida">Despedida</label>
+      <input id="m-despedida" type="text" name="endline" placeholder="Un saludo, la recepción de Precap's Book">
+    </div>
+    <div class="hab__acciones">
+      <button class="btn btn--cta" type="submit">Enviar correo</button>
+      <a class="btn btn--ghost" href="{{ url('all_messages') }}">Cancelar</a>
+    </div>
+  </form>
+  <!-- ===== FIN Correo ===== -->
+@endsection

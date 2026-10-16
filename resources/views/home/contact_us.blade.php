@@ -1,27 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-   <head>
-    @include('home.css')
+@extends('precaps.layout')
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script> 
-  </head>
-   <!-- body -->
-   <body class="main-layout">
-      <!-- loader  -->
-      <div class="loader_bg">
-         <div class="loader"><img src="images/loading.gif" alt="#"/></div>
-      </div>
-      <!-- end loader -->
-      <!-- header -->
-      @include('home.header')
-      <!-- end header inner -->
-      <!-- end header -->
-      <!-- blog & contact-->
-        @include('home.contact')
-      <!-- end blog & contact -->
-      <!--  footer -->
-        @include('home.footer')
-      <!-- end footer -->
-   </body>
-</html>
+@section('titulo', "Contacto · Precap's Book")
+@section('descripcion', 'Escribe a la recepción de Precap’s Book. Te respondemos por correo.')
+
+@section('contenido')
+  @include('precaps.partials.cabecera', [
+    'num' => 'V',
+    'etiqueta' => 'Contacto',
+    'titulo' => '¿Dudas antes de reservar? Escríbenos.',
+    'intro' => 'Cuéntanos qué necesitas. El mensaje llega a la recepción y te respondemos por correo.',
+  ])
+
+  @include('precaps.partials.contacto', ['sinCabeza' => true])
+@endsection

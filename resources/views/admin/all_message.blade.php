@@ -1,72 +1,26 @@
-<!DOCTYPE html>
-<html>
-  <head> 
-    @include('admin.css')
-    <style type="text/css">
-    .table_deg{
-        border: 2px solid white;
-        margin: auto;
-        width: 80%;
-        text-align: center;
-        margin-top:40px;
-    }
+@extends('precaps.admin')
 
-    .th_deg{
-        background-color: skyblue;
-        padding:15px;
-    }
+@section('titulo', 'Mensajes')
+@section('ceja', 'Recepción')
 
-    tr{
-        border: 3px solid white;
-    }
-
-    td{
-        padding: 10px;
-    }
-
-    </style>
-  </head>
-  <body>
-    <!-- Header -->
-    @include('admin.header')
-    <!-- Header end-->
-
-    <!-- Sidebar Navigation-->
-    @include('admin.sidebar')
-    <!-- Sidebar Navigation end-->
-
-    <div class="page-content">
-        <div class="page-header">
-          <div class="container-fluid">
-
-            <table class="table_deg">
-                <tr>
-                    <th class="th_deg">Name</th>
-                    <th class="th_deg">Email</th>
-                    <th class="th_deg">Phone</th>
-                    <th class="th_deg">Message</th>
-                    <th class="th_deg">Send Email</th>
-                </tr>
-                @foreach($data as $data)
-                <tr>
-                    <td>{{$data->name}}</td>
-                    <td>{{$data->email}}</td>
-                    <td>{{$data->phone}}</td>
-                    <td>{{$data->message}}</td>
-                    <td>
-                        <a class="btn btn-success" href="{{url('send_mail',$data->id)}}">Send Email</a>
-                    </td>
-                </tr>
-                @endforeach
-                
-            </table>
-
+@section('contenido')
+  <!-- ===== INICIO Mensajes ===== -->
+  <section class="mensajes">
+    @forelse ($data as $item)
+      <article class="mensaje" data-reveal>
+        <div class="mensaje__quien">
+          <span class="opinion__inicial" aria-hidden="true">{{ mb_strtoupper(mb_substr($item->name ?? '?', 0, 1)) }}</span>
+          <div>
+            <strong>{{ $item->name }}</strong>
+            <span>{{ $item->email }} · {{ $item->phone }}</span>
           </div>
         </div>
-    </div>
-     
-    <!-- Footer -->
-    @include('admin.footer')
-    <!-- Footer end -->
-  </body>
-</html>
+        <p class="mensaje__texto">{{ $item->message }}</p>
+        <a class="btn btn--oscuro btn--sm" href="{{ url('send_mail', $item->id) }}">Responder por correo</a>
+      </article>
+    @empty
+      <p class="caja__vacio">No hay mensajes nuevos.</p>
+    @endforelse
+  </section>
+  <!-- ===== FIN Mensajes ===== -->
+@endsection
