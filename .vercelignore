@@ -5,3 +5,21 @@
 /tests
 Homestead.json
 Homestead.yaml
+
+# Imágenes de prueba de la plantilla: no se publican en la demo
+/public/room/1746531217.jpg
+/public/room/1746540458.jpg
+/public/room/1746540913.jpg
+/public/room/1746780771.jpg
+/public/room/1746781479.jpg
+/public/room/1746781499.jpg
+/public/room/1746799972.jpg
+/public/gallery/1746797378.png
+/public/gallery/1746797500.png
+/public/gallery/1746797875.jpg
+/public/gallery/1746798104.jpg
+/public/gallery/1746798109.jpg
+/public/gallery/1746798134.png
+/public/gallery/1746798140.jpg
+/public/gallery/1746798144.jpg
+/public/gallery/1746798151.jpg

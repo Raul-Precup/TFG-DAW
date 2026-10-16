@@ -36,12 +36,12 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $rooms = [
-            ['Habitación Individual', 'regular', '65', '1746531217.jpg', 'Habitación tranquila y luminosa, ideal para viajes de trabajo o escapadas cortas.'],
-            ['Habitación Doble Estándar', 'regular', '85', '1746540458.jpg', 'Cama de matrimonio, baño completo y escritorio. Todo lo necesario para una estancia cómoda.'],
-            ['Habitación Doble Superior', 'premium', '110', '1746540913.jpg', 'Más espacio, zona de estar y acabados de mayor calidad.'],
-            ['Suite Junior', 'premium', '150', '1746780771.jpg', 'Suite con salón integrado, cafetera y amenities premium.'],
-            ['Suite Deluxe', 'deluxe', '220', '1746781479.jpg', 'Amplia suite con vistas, bañera y servicio de habitaciones.'],
-            ['Suite Presidencial', 'deluxe', '320', '1746781499.jpg', 'La mejor suite del hotel: salón independiente, terraza y atención personalizada.'],
+            ['Habitación Individual', 'regular', '65', '1747746622.jpg', 'Habitación tranquila y luminosa, ideal para viajes de trabajo o escapadas cortas.'],
+            ['Habitación Doble Estándar', 'regular', '85', '1747746596.jpg', 'Dos camas, baño completo y escritorio. Todo lo necesario para una estancia cómoda.'],
+            ['Habitación Doble Superior', 'premium', '110', '1747746609.jpg', 'Más espacio, zona de estar y acabados de mayor calidad.'],
+            ['Suite Junior', 'premium', '150', '1748952600.jpg', 'Suite con salón integrado, cafetera y amenities premium.'],
+            ['Suite Deluxe', 'deluxe', '220', '1747746524.jpg', 'Amplia suite luminosa, con bañera y servicio de habitaciones.'],
+            ['Suite Presidencial', 'deluxe', '320', '1747746528.jpg', 'La mejor suite del hotel: salón independiente, vistas y atención personalizada.'],
         ];
 
         foreach ($rooms as [$title, $type, $price, $image, $description]) {
@@ -55,8 +55,14 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        foreach (glob(public_path('gallery').'/*.{jpg,jpeg,png}', GLOB_BRACE) as $file) {
-            Gallery::create(['image' => basename($file)]);
+        // Solo fotos del hotel: la carpeta tiene además imágenes de prueba que no deben salir en la demo.
+        $gallery = [
+            '1747746508.jpg', '1747746512.jpg', '1747746515.jpg', '1747746520.jpg', '1747746524.jpg',
+            '1747746528.jpg', '1747746539.jpg', '1747746542.jpg', '1748952640.jpg',
+        ];
+
+        foreach ($gallery as $image) {
+            Gallery::create(['image' => $image]);
         }
 
         $bookings = [
