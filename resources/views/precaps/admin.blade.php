@@ -1,5 +1,5 @@
 @php
-  $v = '20261016c';
+  $v = '20261016d';
   $menu = [
     ['Resumen', url('home'), request()->is('home'), 'M4 13h6V4H4zM14 20h6v-9h-6zM4 20h6v-4H4zM14 7h6V4h-6z'],
     ['Habitaciones', url('view_room'), request()->is('view_room') || request()->is('room_update/*'), 'M3 18v-6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v6M3 18h18M3 18v2M21 18v2M6 9V6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v3'],

@@ -11,7 +11,7 @@
         <link rel="apple-touch-icon" href="{{ asset('apple-touch-icon-precaps.png') }}">
 
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-        <link rel="stylesheet" href="{{ asset('css/precaps.css') }}?v=20261016c">
+        <link rel="stylesheet" href="{{ asset('css/precaps.css') }}?v=20261016d">
         <script>document.documentElement.className=document.documentElement.className.replace('no-js','js');</script>
 
         @livewireStyles
@@ -38,6 +38,6 @@
         @stack('modals')
 
         @livewireScripts
-        <script src="{{ asset('js/precaps.js') }}?v=20261016c" defer></script>
+        <script src="{{ asset('js/precaps.js') }}?v=20261016d" defer></script>
     </body>
 </html>

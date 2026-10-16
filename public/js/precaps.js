@@ -202,8 +202,9 @@
       const c = caja.getBoundingClientRect();
       const b = boton.getBoundingClientRect();
       const tarjeta = boton.closest('.reserva');
-      const ancho = b.width > c.width * 0.6;
-      const x = ancho ? c.width - 30 : b.left + b.width / 2 - c.left;
+      // En pantallas estrechas o con el botón a lo ancho, la cinta va pegada al canto derecho, fuera del texto
+      const alCanto = b.width > c.width * 0.6 || c.width < 700;
+      const x = alCanto ? c.width - 30 : b.left + b.width / 2 - c.left;
       const fin = tarjeta ? tarjeta.getBoundingClientRect().top - c.top + 6 : b.top - c.top - 14;
       caja.style.setProperty('--cinta-x', `${x}px`);
       caja.style.setProperty('--cinta-h', `${Math.max(60, fin)}px`);
